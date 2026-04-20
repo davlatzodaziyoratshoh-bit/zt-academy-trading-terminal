@@ -616,9 +616,13 @@ function VideoCard({ lesson, index }: { lesson: VideoLesson; index: number }) {
       {/* Thumbnail / Player */}
       <div className="relative aspect-video bg-black">
         {playing ? (
-          <img src="/src/assets/video_placeholder.jpg" className="w
-        ) : (
-          <>
+      <img
+        src={videoPlaceholder}
+        className="w-full h-full object-cover"
+        alt="Coming Soon"
+        />
+      ) : (
+      <>
             {/* Thumbnail placeholder */}
             <div
               className="w-full h-full flex items-center justify-center relative overflow-hidden"
