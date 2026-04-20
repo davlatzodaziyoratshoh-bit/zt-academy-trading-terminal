@@ -616,12 +616,7 @@ function VideoCard({ lesson, index }: { lesson: VideoLesson; index: number }) {
       {/* Thumbnail / Player */}
       <div className="relative aspect-video bg-black">
         {playing ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${lesson.youtubeId}?autoplay=1`}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          <<img src="/src/assets/video_placeholder.jpg" className="w-full h-full object-cover" alt="Coming Soon" />
         ) : (
           <>
             {/* Thumbnail placeholder */}
