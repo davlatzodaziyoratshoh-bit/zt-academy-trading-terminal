@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Send, TrendingUp, TrendingDown, Zap, Shield, BookOpen, ChevronRight, Activity, BarChart2, DollarSign, AlertTriangle, RefreshCw } from "lucide-react";
-
+import videoPlaceholder from './assets/video_placeholder.jpg';
 // Custom Instagram SVG icon (lucide-react may not export it in all versions)
 function InstagramIcon({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
   return (
