@@ -1065,7 +1065,19 @@ export default function App() {
                 />
                 <RiskCalculator />
               </motion.div>
-
+<motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55 }}
+          className="mb-6"
+        >
+          <SectionTitle
+            icon={<Brain size={16} />}
+            title="Mindset Control"
+            sub="ПСИХОЛОГИЧЕСКИЙ АУДИТ ТРЕЙДЕРА"
+          />
+          <PsychologyAudit />
+        </motion.div>
               {/* ── VIDEO HUB ── */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
