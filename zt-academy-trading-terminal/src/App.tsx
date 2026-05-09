@@ -939,6 +939,34 @@ function Footer() {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [mounted, setMounted] = useState(false);
+  const [marketStatus, setMarketStatus] = useState({
+    type: 'safe',
+    text: 'MARKET STATUS: STABLE',
+    desc: 'Low volatility. Perfect time for technical analysis.'
+  });
+
+  useEffect(() => {
+    const checkMarket = () => {
+      const hour = new Date().getHours();
+      // Опасное время: 17:00 - 20:00 по Душанбе
+      if (hour >= 17 && hour <= 20) {
+        setMarketStatus({
+          type: 'danger',
+          text: 'MARKET STATUS: HIGH DANGER',
+          desc: 'High Volatility detected. Protect your capital!'
+        });
+      } else {
+        setMarketStatus({
+          type: 'safe',
+          text: 'MARKET STATUS: STABLE',
+          desc: 'Market is calm. Good for technical setups.'
+        });
+      }
+    };
+    checkMarket();
+    const timer = setInterval(checkMarket, 60000);
+    return () => clearInterval(timer);
+  }, []);
   useEffect(() => { setMounted(true); }, []);
 
   return (
@@ -1035,6 +1063,34 @@ export default function App() {
                   Master Smart Money Concepts · Real-time Analytics · Professional Risk Management
                 </p>
               </motion.div>
+              <div style={{
+  margin: '1.5rem auto',
+  padding: '1.25rem',
+  borderRadius: '1rem',
+  border: '1px solid',
+  backdropFilter: 'blur(12px)',
+  transition: 'all 0.5s ease',
+  borderColor: marketStatus.type === 'safe' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)',
+  backgroundColor: marketStatus.type === 'safe' ? 'rgba(34, 197, 94, 0.05)' : 'rgba(239, 68, 68, 0.05)',
+  color: marketStatus.type === 'safe' ? '#4ade80' : '#f87171',
+  maxWidth: '400px',
+  position: 'relative',
+  zIndex: 50
+}}>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', fontWeight: 'bold', letterSpacing: '0.1em', fontSize: '0.875rem', textTransform: 'uppercase' }}>
+    <div style={{
+      width: '0.6rem',
+      height: '0.6rem',
+      borderRadius: '50%',
+      backgroundColor: marketStatus.type === 'safe' ? '#22c55e' : '#ef4444',
+      boxShadow: marketStatus.type === 'safe' ? '0 0 10px #22c55e' : '0 0 10px #ef4444'
+    }} />
+    {marketStatus.text}
+  </div>
+  <p style={{ fontSize: '0.75rem', opacity: 0.7, marginTop: '0.5rem', textAlign: 'center', fontWeight: '500' }}>
+    {marketStatus.desc}
+  </p>
+</div>
 
               {/* ── LIVE GOLD PRICE ── */}
               <motion.div
